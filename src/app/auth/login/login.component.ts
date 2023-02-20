@@ -27,7 +27,15 @@ constructor(private userService:UserService,private _router: Router){
   }
 
   onSubmit(data:any){
-    console.log(data.value);
+    data.value.manufacturer_id = 1
+    this.userService.register(data.value).subscribe(data=>{
+      alert("Registerd Successfully");
+      window.location.reload();
+    },
+    error => {
+      console.log(error);
+     alert(error.error.message);
+    },);
   }
 
 }
