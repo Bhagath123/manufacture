@@ -11,6 +11,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { FormsModule } from '@angular/forms';     
 import {HttpClientModule} from '@angular/common/http';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {HttpClientModule} from '@angular/common/http';
     LoginComponent,
     SideNavComponent,
     HeaderComponent,
-    MainComponent
+    MainComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

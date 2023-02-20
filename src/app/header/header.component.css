@@ -28,3 +28,10 @@
     justify-content: center;
     font-weight: bold;
 }
+.logo_img{
+    width: 50%;
+    position: relative;
+    top: -17px;
+    left: -23px;
+
+}
