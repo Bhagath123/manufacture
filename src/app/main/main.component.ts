@@ -105,6 +105,9 @@ USER_DATA: USER[] = [
       alert('Added Successfully');
       data.resetForm();
       this.getUsers();
+    },error => {
+      console.log(error.error.errors);
+     alert(error.error.errors.password[0]);
     });
     
    }

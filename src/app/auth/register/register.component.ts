@@ -22,8 +22,8 @@ export class RegisterComponent implements OnInit {
       this._router.navigateByUrl('/login');
     },
     error => {
-      console.log(error);
-     alert(error.error.message);
+      console.log(error.error.errors);
+     alert(error.error.errors.password[0]);
     },);
   }
   signUp(){
