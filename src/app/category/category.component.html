@@ -1,0 +1,106 @@
+<div class="container-class">
+    <div class="header">
+      <app-header></app-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-side-nav></app-side-nav>
+      </div>
+      <mat-card class="card">
+        <mat-card-content>
+          <div class="main">
+    
+            <mat-tab-group headerPosition="above">
+              <mat-tab label="Category">
+              
+                <mat-form-field class=" mt-4">
+                    <mat-label>Filter</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+                  </mat-form-field>
+                <!-- <div class="mat-elevation-z8"> -->
+                  <table mat-table [dataSource]="dataSource">
+                
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="edit">
+                      <th mat-header-cell *matHeaderCellDef> Edit </th>
+                      <td mat-cell *matCellDef="let element" > <fa-icon (click)="open(mymodal,element.id)" [icon]="faEdit"></fa-icon>  </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                      </tr>
+                  </table>
+                
+                  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                 showFirstLastButtons
+                                 aria-label="Select page of periodic elements">
+                  </mat-paginator>
+                <!-- </div> -->
+              </mat-tab>
+              <mat-tab label="Add New Category">
+                <mat-card class="card mt-4">
+                  <mat-card-content>
+                    <form #catDetails="ngForm" (ngSubmit)="addCategory(catDetails)">
+                      <div class="row mt-4">
+                         <div class="col-md-6">
+                          <label for="">Name</label>
+                           <input type="text" placeholder="Ex.Car"  class="form-control" name="name" ngModel>
+                         </div>
+      
+                         </div>
+                       
+                    <div class="row">
+                      <div class="col-md-2 mt-4" style="margin: auto;">
+                        <button type="submit" class="btn btn-primary
+                  ">Add Category</button>
+                      </div>
+                    </div>
+            
+                    </form>
+                  </mat-card-content>
+                  </mat-card>
+              </mat-tab>
+              
+            </mat-tab-group>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+     
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Edit Category</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+
+        <form #editDetails="ngForm" (ngSubmit)="onEditDetails(editDetails)">
+          <div class="row mb-4" style="
+          margin: auto;">
+             <div class="col-md-8">
+              <label for="">Name</label>
+              <input type="hidden" name="id" value="{{catId}}">
+               <input placeholder="Ex. Martin" value="{{editName}}" class="form-control" name="name" ngModel>
+             </div>           
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" (click)="modal.close('Save click')">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+   
+  </ng-template>
+  

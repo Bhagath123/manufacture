@@ -15,7 +15,8 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(data:any){
-    data.value.manufacturer_id = 1
+    data.value.manufacturer_id = 1;
+    data.value.is_approved = 0;
     this.userService.register(data.value).subscribe(data=>{
       alert("Registerd Successfully");
       this._router.navigateByUrl('/login');

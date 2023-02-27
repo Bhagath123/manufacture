@@ -1,34 +1,27 @@
 <div class="nav-items">
-    <div class="nav-item">
-      <fa-icon [icon]="faDashboard"></fa-icon>
-      <span>Dashboard</span>
+    <div class="nav-item" (click)="user()">
+      <fa-icon [icon]="faUser"></fa-icon>
+      <span>User</span>
     </div>
-    <div class="nav-item">
-      <fa-icon [icon]="faLocation"></fa-icon>
-      <span>Locations</span>
+
+    <div class="nav-item" (click)="category()">
+      <fa-icon [icon]="faChain"></fa-icon>
+      <span>Category</span>
     </div>
-    <div class="nav-item">
+
+    <div class="nav-item" (click)="product()">
       <fa-icon [icon]="faShop"></fa-icon>
-      <span>Shops</span>
-    </div>
-    <div class="nav-item">
-      <fa-icon [icon]="faBox"></fa-icon>
       <span>Products</span>
     </div>
-    <div class="nav-item">
-      <fa-icon [icon]="faMoneyBill"></fa-icon>
-      <span>Sales</span>
+    <div class="nav-item" (click)="parts()">
+      <fa-icon [icon]="faShoppingBag"></fa-icon>
+      <span>Parts</span>
     </div>
-    <div class="nav-item">
-      <fa-icon [icon]="faChartBar"></fa-icon>
-      <span>Statistics</span>
-    </div>
-    <div class="nav-item">
-      <fa-icon [icon]="faContactBook"></fa-icon>
-      <span>Contact</span>
-    </div>
-    <div class="nav-item">
-      <fa-icon [icon]="faHand"></fa-icon>
-      <span>Help</span>
+   
+  
+   
+    <div class="nav-item" (click)="signOut()">
+      <fa-icon [icon]="faLogout" ></fa-icon>
+      <span>Logout</span>
     </div>
   </div>

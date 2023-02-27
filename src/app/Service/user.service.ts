@@ -21,4 +21,21 @@ api_register = this.base_apiurl+'register';
   register(details:any){
     return this.http.post(this.api_register,details);
    }
+
+
+   getUser(){
+    return this.http.get('http://127.0.0.1:8000/api/users');
+   }
+
+  
+
+   getUserById(id:any){
+   
+    return this.http.get(`http://127.0.0.1:8000/api/users/${id}`);
+   }
+
+   updateUserById(data:any){
+   
+    return this.http.put(`http://127.0.0.1:8000/api/users/${data.id}`,data);
+   }
 }

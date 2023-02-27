@@ -19,7 +19,11 @@ constructor(private userService:UserService,private _router: Router){
  
   }
   onLoginSubmit(data:any){
-    this.userService.login(data.value).subscribe(data=>{
+    
+   
+    this.userService.login(data.value).subscribe((login_data:any)=>{
+      console.log(data,'datraaa');
+      localStorage.setItem('id_token',login_data.access_token);
       this._router.navigateByUrl('/dashboard');
     },
     error => {

@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
-  faDashboard,
-  faLocation,
+  faUser,
+  
   faShop,
-  faBox,
-  faMoneyBill,
+ 
+  faShoppingBag,
   faChartBar,
-  faContactBook,
-  faHand,
+  faChain,
+  faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -16,17 +17,33 @@ import {
   styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent implements OnInit {
-  faDashboard = faDashboard;
-  faLocation = faLocation;
+  faUser = faUser;
   faShop = faShop;
-  faBox = faBox;
-  faMoneyBill = faMoneyBill;
+  faShoppingBag = faShoppingBag;
+
   faChartBar = faChartBar;
-  faContactBook = faContactBook;
-  faHand = faHand;
-  constructor() { }
+  faChain = faChain;
+  faLogout = faSignOut;
+
+  constructor(private _router: Router) { }
 
   ngOnInit(): void {
   }
+  signOut(){
+    localStorage.removeItem('id_token');
+    this._router.navigateByUrl('/login');
+  }
+  user(){
+    this._router.navigateByUrl('/dashboard');
+  }
 
+  product(){
+    this._router.navigateByUrl('/products');
+  }
+  category(){
+    this._router.navigateByUrl('/category');
+  }
+  parts(){
+    this._router.navigateByUrl('/parts');
+  }
 }

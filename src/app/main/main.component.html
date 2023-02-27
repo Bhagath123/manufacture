@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-class">
     <div class="header">
       <app-header></app-header>
     </div>
@@ -6,8 +6,159 @@
       <div class="side-nav">
         <app-side-nav></app-side-nav>
       </div>
-      <div class="main">
-        <p>Dashboard Works</p>
-      </div>
+      <mat-card class="card">
+        <mat-card-content>
+          <div class="main">
+    
+            <mat-tab-group headerPosition="above">
+              <mat-tab label="Users">
+                <!-- <div class="mat-elevation-z8"> -->
+                  <mat-form-field class=" mt-4">
+                    <mat-label>Filter</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+                  </mat-form-field>
+                  <table mat-table [dataSource]="dataSource" 
+                  class="mat-elevation-z8"
+                  >
+                
+                    <ng-container matColumnDef="name" >
+                      <th mat-header-cell *matHeaderCellDef > Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                
+                    
+                    <ng-container matColumnDef="email">
+                      <th mat-header-cell *matHeaderCellDef> Email </th>
+                      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    </ng-container>
+                
+                 
+                    <ng-container matColumnDef="role">
+                      <th mat-header-cell *matHeaderCellDef> Role </th>
+                      <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                      <th mat-header-cell *matHeaderCellDef> Status </th>
+                      <td mat-cell *matCellDef="let element"> {{element.is_approved == 1 ? "Active" :"InActive"}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="edit">
+                      <th mat-header-cell *matHeaderCellDef> Edit </th>
+                      <td mat-cell *matCellDef="let element" > <fa-icon (click)="open(mymodal,element.id)" [icon]="faEdit"></fa-icon>  </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    <tr class="mat-row" *matNoDataRow>
+                      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                    </tr>
+                  </table>
+                
+                  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                 showFirstLastButtons
+                                 aria-label="Select page of periodic elements">
+                  </mat-paginator>
+                <!-- </div> -->
+              </mat-tab>
+              <mat-tab label="Add New Users">
+                <mat-card class="card mt-4">
+                  <mat-card-content>
+                    <form #userDetails="ngForm" (ngSubmit)="onAddUser(userDetails)">
+                      <div class="row mt-4">
+                         <div class="col-md-6">
+                          <label for="">Name</label>
+                           <input type="text" name="name" ngModel placeholder="Ex. Martin" value="" class="form-control">
+                         </div>
+            
+                         <div class="col-md-6">
+                          <label for="">Email</label>
+                           <input type="email" name="email" ngModel placeholder="Ex.martin@gmail.com" value="" class="form-control">
+                         </div>
+
+                      
+                         </div>
+                         <div class="row mt-4">
+                           <div class="col-md-6">
+                            <label for="">Password</label>
+                            <input type="password" name="password" ngModel placeholder="Ex.123456" value="" class="form-control" >
+                           </div>
+                           <div class="col-md-6 ">
+                            <label for="">Role</label>
+                            <select placeholder="Role" class="form-control"  name="role" ngModel >
+                             
+                              <option value="dealer" selected>Dealer</option>
+                              <option value="distributor">Distributor</option>
+                              <option value="direct dealer">Direct Dealer</option>
+                          </select>
+                           </div>
+                         </div>
+                      
+                       
+                    <div class="row">
+                      <div class="col-md-2 mt-4" style="margin: auto;">
+                        <button type="submit" class="btn btn-primary
+                  ">Add User</button>
+                      </div>
+                    </div>
+            
+                    </form>
+                  </mat-card-content>
+                  </mat-card>
+              </mat-tab>
+              
+            </mat-tab-group>
+          </div>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
+
+     
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Edit User</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+
+        <form #userDetails="ngForm" (ngSubmit)="onEditDetails(userDetails)">
+          <div class="row" style="
+          margin: auto;">
+             <div class="col-md-8">
+              <label for="">Name</label>
+               <input placeholder="Ex. Martin" name="name" [(ngModel)]="editUser.name"  class="form-control">
+             </div>
+
+             <div class="col-md-8 mt-2">
+              <label for="">Role</label>
+              <select name="role" id="" class="form-control" [(ngModel)]="editUser.role">
+                <option value="" selected disabled hidden>Role</option>
+                <option value="dealer" [selected]="editUser?.role == 'dealer'" >Dealer</option>
+                <option value="distributor" [selected]="editUser?.role == 'distributor'">Distributor</option>
+                <option value="direct dealer" [selected]="editUser?.role == 'direct dealer'">Direct Dealer</option>
+              </select>
+             </div>
+             
+             <div class="col-md-8 mt-2 mb-4">
+              <label for="">Status</label>
+              <select name="is_approved" id="" class="form-control" [(ngModel)]="editUser.is_approved">
+                <option value="1" [selected]="editUser?.is_approved == 1">Active</option>
+                <option value="0" [selected]="editUser?.is_approved ==0">InActive</option>
+              </select>
+             </div>
+          
+           
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" (click)="modal.close('Save click')">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+  </ng-template>
+  
