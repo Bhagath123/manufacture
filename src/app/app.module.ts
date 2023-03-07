@@ -54,6 +54,11 @@ import { ProductComponent } from './product/product.component';
 import { CategoryComponent } from './category/category.component';
 import { PartsComponent } from './parts/parts.component';
 import { JwttokenInterceptor } from './jwttoken.interceptor';
+import { CoustomerProductsComponent } from './coustomer-products/coustomer-products.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { CustomerPartsComponent } from './customer-parts/customer-parts.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +70,11 @@ import { JwttokenInterceptor } from './jwttoken.interceptor';
     RegisterComponent,
     ProductComponent,
     CategoryComponent,
-    PartsComponent
+    PartsComponent,
+    CoustomerProductsComponent,
+    CustomerPartsComponent,
+    ResetPasswordComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -116,6 +125,7 @@ import { JwttokenInterceptor } from './jwttoken.interceptor';
     MatTooltipModule,
     MatTreeModule,
     OverlayModule,
+    CarouselModule, 
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwttokenInterceptor, multi: true }

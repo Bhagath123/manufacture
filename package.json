@@ -25,6 +25,8 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.0",
     "@ng-bootstrap/ng-bootstrap": "^12.0.0",
     "bootstrap": "^5.2.3",
+    "ngx-owl-carousel-o": "^7.0.4",
+    "ngx-toastr": "^13.2.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

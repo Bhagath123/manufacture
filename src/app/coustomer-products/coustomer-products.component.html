@@ -1,0 +1,94 @@
+<div class="container-class">
+    <div class="header">
+      <app-header></app-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-side-nav></app-side-nav>
+      </div>
+      <mat-card class="card">
+        <mat-card-content>
+          <div class="main">
+    
+            <mat-tab-group headerPosition="above">
+              <mat-tab label="Category">
+                <mat-card class="card mt-4">
+                    <mat-card-content>
+ <div class="row">
+    <div class="col-md-4">
+        <label for="">Category</label>
+        <select placeholder="category"  class="form-control" name="category" ngModel >
+           <option value="{{cat.id}}" *ngFor="let cat of category">{{cat.name}}</option>
+       </select>
+       </div>
+    
+ </div>
+
+
+ <h1 class="mt-4">Listing of products</h1>
+ <hr>
+  
+ <div class="row">
+    <div class="col-md-4">
+        <mat-card class="card">
+            <owl-carousel-o [options]="customOptions">
+                <ng-container *ngFor="let slide of slidesStore">
+                    <ng-template class="slide" carouselSlide >
+                      <img [src]="slide.src" [alt]="slide.id" [title]="slide.id">
+                    </ng-template>
+                  </ng-container>
+            </owl-carousel-o>
+            
+            <mat-card-content>
+                <h3 style="text-align: center;    margin: 0;
+                ">Car</h3>
+                 <h3 style="text-align: center;    margin: 0;
+                 ">SKU : 7674567</h3>
+                 <h3 style="text-align: center;    margin: 0;
+                 ">Color : Black</h3>
+                </mat-card-content>
+                </mat-card>
+    </div>
+ </div>
+
+</mat-card-content>
+</mat-card>
+              </mat-tab>
+ 
+              
+            </mat-tab-group>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+     
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Edit Category</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+
+        <form #editDetails="ngForm" (ngSubmit)="onEditDetails(editDetails)">
+          <div class="row mb-4" style="
+          margin: auto;">
+             <div class="col-md-8">
+              <label for="">Name</label>
+              <input type="hidden" name="id" value="{{catId}}">
+               <input placeholder="Ex. Martin" value="{{editName}}" class="form-control" name="name" ngModel>
+             </div>           
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" (click)="modal.close('Save click')">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+   
+  </ng-template>
+  

@@ -38,4 +38,14 @@ api_register = this.base_apiurl+'register';
    
     return this.http.put(`http://127.0.0.1:8000/api/users/${data.id}`,data);
    }
+
+   forgetpassword(data:any){
+    
+    return this.http.post(`http://127.0.0.1:8000/api/forgotPassword`,data);
+   }
+
+   resetpassword(data:any){
+    
+    return this.http.post(`http://127.0.0.1:8000/api/reset-password`,data);
+   }
 }

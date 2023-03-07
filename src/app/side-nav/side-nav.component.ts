@@ -7,7 +7,7 @@ import {
  
   faShoppingBag,
   faChartBar,
-  faChain,
+  faSliders,
   faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -22,7 +22,7 @@ export class SideNavComponent implements OnInit {
   faShoppingBag = faShoppingBag;
 
   faChartBar = faChartBar;
-  faChain = faChain;
+  faChain = faSliders;
   faLogout = faSignOut;
 
   constructor(private _router: Router) { }
@@ -45,5 +45,8 @@ export class SideNavComponent implements OnInit {
   }
   parts(){
     this._router.navigateByUrl('/parts');
+  }
+  products(){
+    this._router.navigateByUrl('/customer_products');
   }
 }
