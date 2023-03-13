@@ -11,80 +11,43 @@
           <div class="main">
     
             <mat-tab-group headerPosition="above">
-              <mat-tab label="Category">
-                <mat-card class="card mt-4">
-                    <mat-card-content>
- <!-- <div class="row">
-    <div class="col-md-4">
-        <label for="">Category</label>
-        <select placeholder="category"  class="form-control" name="category" ngModel >
-           <option value="{{cat.id}}" *ngFor="let cat of category">{{cat.name}}</option>
-       </select>
-       </div>
-    
- </div> -->
+              <mat-tab label="Listing of parts">
 
-
- <h1 class="mt-4">Listing of parts</h1>
+                <mat-form-field class="mt-4 ml-4">
+                    <mat-label>Select Product</mat-label>
+                    <mat-select [(ngModel)]="selectedOptions" (selectionChange)="onSelectionChange($event)" multiple>
+                      <mat-option *ngFor="let option of products_list" [value]="option.id">{{ option.name }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+ <!-- <h1 class="mt-4">Listing of parts</h1> -->
  <hr>
   
- <div class="row">
-    <div class="col-md-4">
-        <mat-card class="card">
-            <owl-carousel-o [options]="customOptions">
-                <ng-container *ngFor="let slide of slidesStore">
-                    <ng-template class="slide" carouselSlide >
-                      <img [src]="slide.src" [alt]="slide.id" [title]="slide.id">
-                    </ng-template>
-                  </ng-container>
-            </owl-carousel-o>
+ 
+
+             <div class="row">
+                <div class="col-md-3" *ngFor="let product of products">
+                  <div class="card">
+                    <owl-carousel-o [options]="customOptions" class="card-img-top" >
+                        <ng-container *ngFor="let slide of product.images">
+                            <ng-template class="slide" carouselSlide >
+                              <img class="productImage" [src]="slide.image_url" [alt]="slide.id" [title]="slide.id">
+                            </ng-template>
+                          </ng-container>
+                    </owl-carousel-o>
+                    
+                    <div class="card-body">
+                      <h5 class="card-title">{{product.name}}</h5>
+                      <h3 class="text-danger">$ {{product.price}}</h3>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <a class="more_info" (click)="open(mymodal,product.id)">More Info</a>
+                        <button class="btn btn-primary" (click)="addToCart(product)">Add to cart</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
             
-            <mat-card-content>
-                <h3 style="text-align: center;    margin: 0;
-                ">Car</h3>
-                 <h3 style="text-align: center;    margin: 0;
-                 ">SKU : 7674567</h3>
-                 <h3 style="text-align: center;    margin: 0;
-                 ">Color : Black</h3>
-                 <h3 style="text-align: center;    margin: 0;
-                 ">Size : 300*400</h3>
-
-                 <button class="btn btn-success" style="
-                 margin-left: 30%;
-             ">Add to cart</button>
-                </mat-card-content>
-                </mat-card>
-    </div>
-    <div class="col-md-4">
-        <mat-card class="card">
-            <owl-carousel-o [options]="customOptions">
-                <ng-container *ngFor="let slide of slidesStore">
-                    <ng-template class="slide" carouselSlide >
-                      <img [src]="slide.src" [alt]="slide.id" [title]="slide.id">
-                    </ng-template>
-                  </ng-container>
-            </owl-carousel-o>
-            
-            <mat-card-content>
-                <h3 style="text-align: center;    margin: 0;
-                ">Car</h3>
-                 <h3 style="text-align: center;    margin: 0;
-                 ">SKU : 7674567</h3>
-                 <h3 style="text-align: center;    margin: 0;
-                 ">Color : Black</h3>
-                 <h3 style="text-align: center;    margin: 0;
-                 ">Size : 300*400</h3>
-
-                 <button class="btn btn-success" style="
-                 margin-left: 30%;
-             ">Add to cart</button>
-                </mat-card-content>
-                </mat-card>
-    </div>
- </div>
-
-</mat-card-content>
-</mat-card>
               </mat-tab>
  
               
@@ -95,10 +58,12 @@
     </div>
   </div>
 
-     
+
+
+
   <ng-template #mymodal let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Edit Category</h4>
+      <h4 class="modal-title" id="modal-basic-title">View Details</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">×</span>
       </button>
@@ -106,21 +71,37 @@
     <div class="modal-body">
       <div class="container">
 
-        <form #editDetails="ngForm" (ngSubmit)="onEditDetails(editDetails)">
-          <div class="row mb-4" style="
-          margin: auto;">
-             <div class="col-md-8">
-              <label for="">Name</label>
-              <input type="hidden" name="id" value="{{catId}}">
-               <input placeholder="Ex. Martin" value="{{editName}}" class="form-control" name="name" ngModel>
-             </div>           
+        <div class="">
+            <owl-carousel-o [options]="customOptions" class="card-img-top" >
+                <ng-container *ngFor="let slide of editParts?.images">
+                    <ng-template class="slide" carouselSlide >
+                      <img class="modalImage" [src]="slide.image_url" [alt]="slide.id" [title]="slide.id">
+                    </ng-template>
+                  </ng-container>
+            </owl-carousel-o>
+            <h2 class="product-title">{{editParts?.name}}</h2>
+            <ul class="product-specs">
+              <li><strong>Weight:</strong> {{editParts?.weight}} kg</li>
+              <li><strong>SKU:</strong> {{editParts?.sku}}</li>
+              <li><strong>Color:</strong> {{editParts?.color}}</li>
+              <li><strong>Size:</strong>{{editParts?.size}}</li>
+              <li><strong>Specifications:</strong> {{editParts?.specifications}}</li>
+              <li><strong>Description:</strong> {{editParts?.description}}</li>
+              <!-- <p class="product-description">{{editParts?.description}}</p> -->
+            </ul>
+            <p class="product-price text-danger">${{editParts?.price}}</p>
+            <button class=" btn btn-primary" (click)="addToCart(editParts)" style="float: right">Add to Cart</button>
           </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" (click)="modal.close('Save click')">Save</button>
-          </div>
-        </form>
+
       </div>
     </div>
    
   </ng-template>
+
+  
+  
+  
+  
+     
+
   

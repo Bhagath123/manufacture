@@ -13,7 +13,15 @@ export class ProductService {
    }
 
    getParts(){
-    return this.http.get('http://127.0.0.1:8000/api/parts');
+    return this.http.get(`http://127.0.0.1:8000/api/parts`);
+   }
+
+   getPartsByProduct(products:any){
+    if(products.length>0){
+    return this.http.get(`http://127.0.0.1:8000/api/parts?product_ids=[${products}]`);
+    }else{
+      return this.getParts();
+    }
    }
 
 

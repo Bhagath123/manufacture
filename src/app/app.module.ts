@@ -59,6 +59,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { CustomerPartsComponent } from './customer-parts/customer-parts.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { CustomerOrdersComponent } from './customer-orders/customer-orders.component';
+import { AdminOrdersListingComponent } from './admin-orders-listing/admin-orders-listing.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +77,10 @@ import { CartComponent } from './cart/cart.component';
     CoustomerProductsComponent,
     CustomerPartsComponent,
     ResetPasswordComponent,
-    CartComponent
+    CartComponent,
+    CheckoutComponent,
+    CustomerOrdersComponent,
+    AdminOrdersListingComponent
   ],
   imports: [
     BrowserModule,

@@ -24,9 +24,18 @@ constructor(private userService:UserService,private _router: Router,private moda
     
    
     this.userService.login(data.value).subscribe((login_data:any)=>{
-      console.log(data,'datraaa');
+      // console.log(login_data,'datraaa',!login_data.user.hasOwnProperty('role'));
+      localStorage.removeItem('is_admin');
       localStorage.setItem('id_token',login_data.access_token);
-      this._router.navigateByUrl('/dashboard');
+      if(!login_data.user.hasOwnProperty('role')){
+        localStorage.setItem('is_admin',"true");
+        this._router.navigateByUrl('/dashboard');
+      }else{
+        localStorage.setItem('is_admin',"false");
+        this._router.navigateByUrl('/customer_products/parts');
+      }
+      localStorage.setItem('user_id',login_data.user.id)
+   
     },
     error => {
       console.log(error);

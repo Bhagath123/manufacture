@@ -24,8 +24,11 @@ export class SideNavComponent implements OnInit {
   faChartBar = faChartBar;
   faChain = faSliders;
   faLogout = faSignOut;
-
-  constructor(private _router: Router) { }
+  is_admin:any;
+  constructor(private _router: Router) {
+   this.is_admin =localStorage.getItem('is_admin');
+   this.is_admin = (this.is_admin == 'true') ;
+   }
 
   ngOnInit(): void {
   }
@@ -48,5 +51,17 @@ export class SideNavComponent implements OnInit {
   }
   products(){
     this._router.navigateByUrl('/customer_products');
+  }
+  customer_parts(){
+    this._router.navigateByUrl('/customer_products/parts');
+  }
+  customer_order(){
+    this._router.navigateByUrl('/customer_ordered_items');
+  }
+  carts(){
+    this._router.navigateByUrl('/cart');
+  }
+  admin_order(){
+    this._router.navigateByUrl('/order');
   }
 }

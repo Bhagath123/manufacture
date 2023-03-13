@@ -42,10 +42,118 @@
     padding: 30px ;
   }
 
-   img{
+  .productImage{
     object-fit: cover !important; /*this makes the image in src fit to the size specified below*/
-    width: auto !important; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
-    
-    height: 322px;
+
+    width: 221px !important;
+    height: 200px;
+
 
   }
+
+
+
+
+
+
+
+
+
+
+
+ 
+  .card {
+    margin-bottom: 30px;
+  }
+  
+  .card-title {
+    font-size: 18px;
+  }
+  
+  .card-text {
+    font-size: 16px;
+  }
+  
+  .text-danger {
+    font-size: 24px;
+  }
+  
+  .btn-primary {
+    background-color: #012645;
+    border-color: #012645;
+  }
+  
+  .btn-primary:hover {
+    background-color: #012645;
+    border-color: #012645;
+  }
+
+  .more_info{
+    color: #0d6efd !important;
+    text-decoration: underline !important;
+    cursor: pointer;
+  }
+  
+
+
+
+
+  .product-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 300px;
+  }
+  
+  .product-card img {
+    max-width: 100%;
+  }
+  
+  .product-title {
+    font-size: 24px;
+    margin-top: 10px;
+  }
+  
+  .product-specs {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+  
+  .product-specs li {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+  }
+  
+  .product-specs li strong {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .product-description {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .product-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+  }
+  
+  .add-to-cart {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .modalImage{
+    height: 230px;
+  }
+  
+  

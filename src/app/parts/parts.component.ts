@@ -19,8 +19,8 @@ export class PartsComponent implements OnInit {
   name:any;
   faEdit = faEdit;
   closeResult: string = '';
-  public editName:any = "Bhagath";
-  status = "Active";
+  public editName:any = "";
+  status = "";
   uploadFiles: string[] = [];
   uploadEditFiles: string[] = [];
   products:any;
@@ -78,11 +78,14 @@ export class PartsComponent implements OnInit {
     formData.append('description', details.value.description);
     formData.append('style', details.value.style);
     formData.append('product_id', details.value.product_id);
+    formData.append('price', details.value.price);
+    formData.append('weight', details.value.weight);
     formData.append('manufacturer_id', '1');
 
     this.productService.addParts(formData).subscribe(data=>{
       alert('Added Succssfully');
       details.resetForm();
+      this.uploadFiles = [];
       this.getParts();
     });
    }
@@ -150,11 +153,14 @@ export class PartsComponent implements OnInit {
     formData.append('product_id', details.value.product_id);
     formData.append('specifications', details.value.specifications);
     formData.append('description', details.value.description);
+    formData.append('price', details.value.price);
+    formData.append('weight', details.value.weight);
     formData.append('manufacturer_id', '1');
 
     this.productService.updatePartsById(formData,this.partId).subscribe(data=>{
       alert('Updated Succssfully');
       details.resetForm();
+      this.uploadEditFiles =[];
       this.getParts();
     });
    }

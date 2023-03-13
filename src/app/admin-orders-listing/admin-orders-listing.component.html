@@ -1,0 +1,62 @@
+<div class="container-class">
+    <div class="header">
+      <app-header></app-header>
+    </div>
+    <div class="main-container">
+      <div class="side-nav">
+        <app-side-nav></app-side-nav>
+      </div>
+      <mat-card class="card">
+        <mat-card-content>
+          <div class="main">
+            <div class="container">
+                <div class="row">
+                    <div *ngIf="!orders || orders.length === 0" class="alert alert-info" role="alert">
+                        No orders found.
+                      </div>
+                  <div class="col-md-8 offset-md-2 ">
+                   
+                    <div *ngFor="let order of orders">
+                      <div class="card mb-3">
+                        <div class="card-header">
+                          Order ID: #{{ order.id }} | Status: {{ order.status }}
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title">Order Details</h5>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Item Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let item of order.items">
+                                <td>{{ item.part.name }}</td>
+                                <td>{{ item.item_price | currency}}</td>
+                                <td>{{ item.quantity }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <div class="text-right mt-3">
+                            Total Price: {{ order.total | currency }}
+                          </div>
+                        </div>
+                        <div class="card-footer text-muted">
+                          Ordered on {{ order.created_at | date }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+    </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+     
+
+  

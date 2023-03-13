@@ -87,6 +87,7 @@ export class ProductComponent implements OnInit {
     this.productService.addProduct(formData).subscribe(data=>{
       alert('Added Succssfully');
       details.resetForm();
+      this.uploadFiles =[];
       this.getProducts();
     });
    }
@@ -106,6 +107,7 @@ export class ProductComponent implements OnInit {
     this.productService.updateProductById(formData,this.productId).subscribe(data=>{
       alert('Updated Succssfully');
       details.resetForm();
+      this.uploadEditFiles =[];
       this.getProducts();
     });
    }

@@ -102,13 +102,24 @@
                          </div> -->
 
                          <div class="col-md-6">
-                            <label for="">color</label>
+                            <label for="">Color</label>
                             <input type="text" placeholder="Ex.Size" value="" class="form-control" name="color" ngModel >
                            </div>
 
                            <div class="col-md-6">
                             <label for="">Style</label>
                             <input type="text" placeholder="" value="" class="form-control" name="style" ngModel >
+                           </div>
+                         </div>
+                         <div class="row mt-4">
+                         <div class="col-md-6">
+                            <label for="">Price</label>
+                            <input type="number" placeholder="Ex:10" value="" class="form-control" name="price" ngModel >
+                           </div>
+
+                           <div class="col-md-6">
+                            <label for="">Weight</label>
+                            <input type="number" placeholder="EX:2.2" value="" class="form-control" name="weight" ngModel >
                            </div>
                          </div>
 
@@ -192,7 +203,17 @@
                </div>
              </div>
 
+             <div class="row mt-4">
+                <div class="col-md-6">
+                   <label for="">Price</label>
+                   <input type="number" placeholder="Ex:10" value="" class="form-control" name="price" [(ngModel)] = "editParts.price" >
+                  </div>
 
+                  <div class="col-md-6">
+                   <label for="">Weight</label>
+                   <input type="number" placeholder="EX:2.2" value="" class="form-control" name="weight" [(ngModel)] = "editParts.weight" >
+                  </div>
+                </div>
              <div class="row mt-4">
             
                 <div class="col-md-6">

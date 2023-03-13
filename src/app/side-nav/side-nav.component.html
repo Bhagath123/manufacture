@@ -1,31 +1,44 @@
-<div class="nav-items">
-    <div class="nav-item" (click)="user()">
+<div class="nav-items" >
+    <div class="nav-item" (click)="user()" *ngIf="is_admin">
       <fa-icon [icon]="faUser"></fa-icon>
       <span>User</span>
     </div>
 
-    <div class="nav-item" (click)="category()">
+    <div class="nav-item" (click)="category()" *ngIf="is_admin">
       <fa-icon [icon]="faChain"></fa-icon>
       <span>Category</span>
     </div>
 
-    <div class="nav-item" (click)="product()">
+    <div class="nav-item" (click)="product()" *ngIf="is_admin">
       <fa-icon [icon]="faShop"></fa-icon>
       <span>Products</span>
     </div>
 
+    <div class="nav-item" (click)="parts()" *ngIf="is_admin">
+      <fa-icon [icon]="faShoppingBag"></fa-icon>
+      <span>Parts</span>
+    </div> 
 
-    <div class="nav-item" (click)="parts()">
+    <div class="nav-item" (click)="admin_order()" *ngIf="is_admin">
+      <fa-icon [icon]="faShoppingBag"></fa-icon>
+      <span>Orders</span>
+    </div>
+
+    <div class="nav-item" (click)="customer_parts()" *ngIf="!is_admin">
       <fa-icon [icon]="faShoppingBag"></fa-icon>
       <span>Parts</span>
     </div>
-
-    <!-- <div class="nav-item" (click)="products()">
-      <fa-icon [icon]="faShoppingBag"></fa-icon>
-      <span> Products </span>
-    </div> -->
    
-  
+    <div class="nav-item" (click)="carts()" *ngIf="!is_admin">
+      <fa-icon [icon]="faShoppingBag"></fa-icon>
+      <span>Cart</span>
+    </div>
+
+
+    <div class="nav-item" (click)="customer_order()" *ngIf="!is_admin">
+      <fa-icon [icon]="faShoppingBag"></fa-icon>
+      <span>Orders</span>
+    </div>
    
     <div class="nav-item" (click)="signOut()">
       <fa-icon [icon]="faLogout" ></fa-icon>

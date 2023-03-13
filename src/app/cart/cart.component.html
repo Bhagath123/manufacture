@@ -8,16 +8,63 @@
       </div>
       <mat-card class="card">
         <mat-card-content>
-          <div class="main">
+            <div *ngIf="isCartEmpty()" class="empty-cart">
+                <h3>Your cart is empty</h3>
+                <p>Add some items to your cart and start shopping!</p>
+                <p><fa-icon [icon]="faShoppingCart"></fa-icon></p>
+              </div>
+          <div class="main" *ngIf="!isCartEmpty()">
     
             <mat-tab-group headerPosition="above">
               <mat-tab label="Cart">
-                <div class="Cart-Container"></div>
+                <div class="wrap">
 
-                <div class=”Header”>
-                    <h3 class=”Heading”>Shopping Cart</h3>
-                    <h5 class=”Action”>Remove all</h5>
+                    <header class="cart-header cf">
+                      <strong>Items in Your Cart</strong>
+                      <span class="btn">Checkout</span>
+                    </header>
+                    <div class="cart-table">
+
+                      <ul>
+                        <li class="item" *ngFor="let product of cartItems ">
+                          <div class="item-main cf">
+                            <div class="item-block ib-info cf">
+                              <img class="product-img" src="{{product.images[0].image_url}}" />
+                              <div class="ib-info-meta">
+                                <span class="title">{{product.name}}</span>
+                                <span class="itemno">{{product.sku}}</span>
+                              </div>
+                            </div>
+                            <div class="item-block ib-qty">
+                              <input type="number"  class="qty" [(ngModel)]="product.quantity" (change)="updateQuantity(product.id, product.quantity)" />
+                              <span class="price"><span>x</span> ${{product.price}}</span>
+                            </div>
+                            <div class="item-block ib-total-price">
+                              <span class="tp-price">${{product.price * product.quantity | number}} </span>
+                              <span class="tp-remove" (click)="removeItem(product.id)"><fa-icon [icon]="faRemove"></fa-icon></span>
+                            </div>         
+                          </div>
+                        </li>
+                      </ul>
                     </div>
+                    <div class="sub-table cf">
+                      <div class="summary-block">
+                        <ul>
+                          <li class="subtotal"><span class="sb-label">Subtotal</span><span class="sb-value">${{total | number}}</span></li>
+                          <!-- <li class="shipping"><span class="sb-label">Shipping</span><span class="sb-value">n/a</span></li> -->
+                          <li class="tax"><span class="sb-label">Est. Tax | <span class="tax-edit">edit <i class="i-notch-down"></i></span></span><span class="sb-value">${{taxes | number}}</span></li>
+                          <li class="tax-calculate"><input type="text" value="06484" class="tax" /><span class="btn">Calculate</span></li>
+                          <li class="grand-total"><span class="sb-label">Total</span><span class="sb-value">$ {{total + taxes |number}}</span></li>
+                        </ul>
+                      </div>
+                 
+                    </div>
+                    
+                    <div class="cart-footer cf">
+                        <span class="btn" (click)="orderItems()">Checkout</span>
+                        <span class="cont-shopping"><i class="i-angle-left"></i><button class="btn btn-primary">Continue Shopping</button> </span>    
+                    </div>
+                  </div>
               </mat-tab>
             </mat-tab-group>
           </div>

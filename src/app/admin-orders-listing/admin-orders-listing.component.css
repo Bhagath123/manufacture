@@ -24,14 +24,6 @@
     width: 100%;
   }
   
-  td, th {
-    width: 25%;
-  }
-  /* :host {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  } */
   @media only screen and (max-width: 1300px) {
     .main-container .side-nav {
       width: 100px;
@@ -40,12 +32,4 @@
   }
   .main-container .main {
     padding: 30px ;
-  }
-
-   img{
-    object-fit: cover !important; /*this makes the image in src fit to the size specified below*/
-    width: auto !important; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
-    
-    height: 322px;
-
   }
